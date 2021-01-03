@@ -89,25 +89,87 @@ console.dir(obj);
 obj.hasOwnProperty('toString')
 ```
 
-
 **修改或增加属性**
 
 ```
 直接赋值：
-let obj = {name:'frank'} //name是字符串；
-obj.name = 'frank' // name 是字符串；
-obj['name'] = 'frank';
+let obj = {name:'wanti'} //name是字符串；
+obj.name = 'wanti' // name 是字符串；
+obj['name'] = 'wanti';
 obj['na'+'me'] = 'wanti;
 let key = 'name'; obj[key] = 'wanti';
+/* obj.key等价于obj['key'] */;
 
-
+批量赋值：
+Object.assign(obj,{age:18,gender:'female'})
 
 无法通过自身修改或增加共有属性：
 let obj ={},obj2 = {} //共有toString;
 obj.toString = 'xxx' 只会更改obj自身属性；
 obj2.toString还是在原型上
+
+强制修改或增加(非常不建议修改原型，因为这回引起很多问题，除非你有能力解决这些问题)：
+obj.__proto__.toString = 'XXX' // 不推荐使用—__proto__ ;
+Object.prototype.toString = 'xxx';
+
+修改隐藏属性：
+推荐使用：
+let obj = Object.create(common);
+obj.name = 'wanti';
+ley obj2 = Object.create(common);
+obj2.name = 'jack'
+
+不推荐使用__proto__:
+let obj = {name:'wanti'}; 
+let obj2 = {name: 'jack'};
+let common = {kind:'human'};
+obj.__proto__ = common;
+obj2.__proto__ = common;
+
 ```
 
-****
+原型--每个对象都有原型：
+```
+原型里存着对象的共有属性；
+比如obj的原型就是一个对象；
+obj.__proto__存着这个对象的地址；
+这个对象里有toString/constructor/valueOf等属性
+```
+
+原型--对象的原型也是对象
+
+    · 所以对象的原型也有原型；
+    · obj = {}的原型即为所有对象的原型；
+    · 这个原型包括所有对象的共有属性，是对象的根；
+    · 这个原型也有原型，是null;
+
+**查看属性**
+
+```
+中括号语法：obj['key'];// 优先使用
+点语法：obj.key;
+```
+
+**必须搞懂这一题**
+
+```
+代码：
+let list = ['name', 'age' , 'gender']
+let persion = {
+	name:'wanti',age:18,gender:'woman'
+}
+
+for(let i = 0 ;i<list.length;i++){
+	let name = list[i]
+    console.log(peison__??__)
+}
+使得person的所有属性被打印出来；
+```
+
+```
+选项：
+1.console.log(person.name);
+2.console.log(person[name])
+```
 
 
