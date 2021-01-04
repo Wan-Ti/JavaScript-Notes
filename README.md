@@ -172,4 +172,228 @@ for(let i = 0 ;i<list.length;i++){
 2.console.log(person[name])
 ```
 
+## 语法
 
+**表达式与语句**
+
+区别(非绝对)：
+
+    · 表达式一般都有值，语句可能有也可能没有；
+    · 语句一般会改变环境(声明、赋值)
+
+大小写敏感：
+
+    · var a 和var A 是不同的；
+    · object和Object是不同的；
+    · function和Function是不同的；
+
+大部分空格无实意，唯独return后年不能加return；
+
+**标识符**
+
+规则：</br>
+第一个字符可以是Unicode字母或$或_或中文；</br>
+第二个字符除了上述还可以有数字；
+
+变量名是标识符：
+```
+var _ = 1;
+var $ = 2;
+var _____=6;
+var 你好 = 'hi'
+
+```
+
+**if语句**
+
+语法：</br>
+if(表达式){语句1}else{语句2}
+
+面试题：
+```
+a = 1;
+if( a === 2 )
+	console.log('a');
+    console.log('a等于2’)；
+```
+
+推荐写法：
+```
+if (表达式) {
+  语句
+} else if (表达式) {
+  语句
+} else {
+  语句
+}
+```
+
+次推荐：
+```
+function fn () {
+  if (表达式) {
+     return  表达式
+  }
+  if (表达式) {
+    return  表达式
+  }
+  return  表达式
+}
+
+```
+
+
+
+**switch语句**
+
+语法：
+```
+switch (fruit) {
+  case "apple":
+     ...
+  break;
+  case "apple":
+     ...
+  break;
+  default:
+      ...
+}
+
+/*大部分的时候如果省略break你就完了，因为这样会陷入死循环*/
+     
+```
+
+**问号冒号表达式**
+
+表达式1:表达式2:表达式3
+
+**while循环**
+
+语法：</br>
+while(表达式){ 语句 }</br>
+判断表达式的真假;</br>
+当表达式为真，执行语句，执行完再判断表达式的真假；</br>
+当表达式为假，执行后面的语句；</br>
+
+**for循环**
+
+for是while循环的方便写法。
+
+语法：</br>
+for (语句1；表达式2；语句3){
+	循环体
+}
+
+break和continue的区别是：</br>
+break是退出所有循环，而continue是退出当前循环；
+
+**label语句**
+
+语法：
+```
+foo :{
+   console.log(1);
+   break foo;
+   console.log('本行不会输出');
+}
+console.log(2)
+
+题目：
+{
+   foo: 1
+}
+```
+解释这段代码
+
+## 数据类型和运算符
+
+**七种数据类型**
+
+    · 数字 number
+    · 字符串 string
+    · 布尔 bool
+    · 符号 symbol
+    · 空 undefined
+    · 空 null
+    · 对象 object
+
+**字符串**
+
+写法：
+```
+单引号：'hello'
+双引号："hello"
+反引号：`hello`
+```
+
+属性：
+```
+string.length:
+
+'123'.length;//3
+'\n\r\t'.length; // ?
+''.length;// 0
+' '.length;// 1
+
+
+通过下标读取字符：
+string[index]:
+let s = "hello"
+s[0] // "h";
+s[5] // undefined;
+s[4] // '0'
+
+```
+
+**undefined和null的区别**
+
+区别：
+
+    · 如果一个变量声明了，但没有赋值，那么它的默认值就是undefined，而非null;
+    · 如果一个函数，没有写return，那么默认 return undefined，而不是null；
+    · 习惯上会将非对象的空值写为undefined，将对象的空值写为null;
+    
+**变量声明**
+
+三种声明变量：
+```
+var a = 1;// 过时的、不好用的
+let a = 1;// 新的，更合理的
+const a = 1;//声明时必须赋值，且不能再改；
+a = 1;// 错误的！！！不许这样写！！
+```
+
+let 声明规则：
+
+    · 遵循块作用域，即适用范围不能超出{};
+    · 不能重复声明；
+    · 可以赋值，也可以不赋值；
+    · 必须先声明再使用，否则会报错；
+    · 全局声明的 let 变量，不会变成window的属性；
+    · for 循环配合 let 有奇效；
+    
+const 声明规则：</br>
+与let几乎一样，唯独不一样的是const声明时就要赋值，且赋值后不能更改；
+
+**数据类型之间的转换**
+
+```
+number => string :
+String(n);
+n + '';
+
+string => number:
+Number(s);
+parseInt(s) / parseFloat(s);
+s - 0 ;
+
+x => bool:
+Boolean(x);
+!!x;
+
+x => string:
+String(x);
+x.toString()
+
+```
+  
