@@ -397,3 +397,167 @@ x.toString()
 
 ```
   
+## JS对象分类
+
+**new操作符**
+
+new X()的作用：
+
+
+    · 自动创建空对象</br>
+    · 自动为空对象关联原型，原型地址指定为X。prototype;
+    · 自动将空对象作为this关键字运行构造；
+    · 自动return this;
+构造函数X：</br>
+X函数本身负责给对象本身添加属性；</br>
+X.prototype对象负责保存对象的共用属性；
+
+结论：</br>
+你是谁构造的，你的原型就是谁的prototype属性对应的对象；
+
+公式：</br>
+对象.__proto__===其构造函数.prototype;</br>
+
+计算机中对象分类的必要性类似于生物学科中给生物进行分类一样；
+
+**数组对象**
+
+定义一个数组：
+```
+let arr =[1,2,3];
+let arr = new Array(1,2,3) // 元素为1，2，3；
+let arr = new Array(3) // 长度为3；
+```
+
+数组对象的自身属性：</br>
+'0' / '1' / '2' /'length';</br>
+属性名没有数字，只有字符串；
+
+**函数对象**
+
+定义一个函数：
+```
+function fn(x,y) { return x+y}
+let fn2 = function fn(x,y) { return x+y}
+let fn = (x,y) => x+y;
+let fn = new Function('x','y','return x+y');
+```
+
+函数对象自身属性：</br>
+'name' / 'length';
+
+函数对象公用属性：</br>
+'call' / 'apply' / 'bind';
+
+
+**数组对象**
+
+创建一个数组
+```
+新建：
+let arr = [1,2,3];
+let arr = new Array(1,2,3);
+let arr = new Array(3);
+
+转化：
+let arr = '1,2,3'.split(',');
+let arr = '123'.splite('');
+Array.from('123');
+
+伪数组：
+let divList = document.querySelectorAll('div');
+伪数组的原型链中并没有数组的原型；
+
+合并两个数组，得到新数组：
+arr1.concat(arr2);
+
+截取一个数组的一部分：
+arr1.slice(1) //从第二个元素开始；
+arr1.slice(0) //全部截取；
+JS只提供了浅拷贝；
+```
+
+删除元素：
+```
+跟对象一样：
+let arr = ['a','b','c'];
+delete arr['0'];
+arr //[empty,'b','c'];
+
+删除头部元素：
+arr.shift() //arr被修改，并返回被删除元素；
+
+删除尾部元素：
+arr.pop() //arr被修改，并返回被删除元素；
+
+删除中间元素：
+arr.splice(index,1) //删除index的一个元素；
+arr.splice(index,1,'x') //并在删除位置添加X
+arr.splice(index,1,'x','y') //并在删除位置添加'x','y'
+```
+
+查看所有元素：
+```
+查看所有属性名：
+let arr = [1,2,3,4,5];arr.x='xxx';
+Object.keys(arr);
+for(let key in arr){console.log(`${key}:${arr[key]}`)};
+
+查看数字(字符串)属性名和值：
+for(let i = 0;i < arr.length;i++){
+  console.log(`${i}: ${arr[i]}`)
+}
+
+需要自己写forEach才能理解forEach:
+function forEach(array,fn){
+  for (let i =0;i < array.length;i++){
+    fn(array[i], i, array)
+  }
+}
+forEach用for访问array的每一项
+```
+
+查看单个属性：
+```
+与对象一样：
+let arr = [111,222,333];
+arr[0];
+
+索引越界：
+arr[arr.length] === undefined;
+arr[-1] === undefined;
+
+查找某个元素是否在数组里：
+arr.indexOf(item) //存在返回索引，否在返回-1；
+
+使用条件查找元素：
+arr.find(item => item % 2 === 0)//找第一个偶数
+
+使用条件查找元素的索引：
+arr.findIndex(item => item % 2 === 0)//找第一个偶数的索引
+```
+
+增加数组中的元素
+```
+在尾部增加元素：
+arr.push(newItem) //修改arr,返回新长度；
+arr.push(item1,item2)//修改arr,返回新长度
+
+在头部增加元素：
+arr.unshift(newItem) //修改arr,返回新长度；
+arr.unshift(item1,item2) //修改arr,返回新长度
+
+在中间增加元素：
+arr.splice(index,0,'x')//在index处插入'x'
+arr.splice(index,0,'x','y')
+```
+
+修改数组中的元素：
+```
+反转顺序：
+arr.reverse() //修改原数组
+
+自定义顺序：
+
+arr.sort((a,b) => a-b)
+```
