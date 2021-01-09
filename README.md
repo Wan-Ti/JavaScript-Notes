@@ -689,3 +689,39 @@ return假值可以阻止默认动作；
 使用 ：
 let a=(1,2,3,4,5);//a=5
 ```
+
+## JS总结
+
+**JS公式**
+
+对象.__proto__ === 其构造函数.prototype
+
+**根公理**
+
+Object.prototype是所有对象的(直接或间接)原型
+
+**函数公理**
+
+所有函数都是由Function构造的；
+
+任何函数.__proto__ === Function.prototype
+
+任何函数有Object / Array / Function
+
+**JS世界的构造顺序**
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a162f9fac9514e7397dce11df7a531cc~tplv-k3u1fbpfcp-watermark.image)
+
+总结：</br>
+构造函数：</br>
+是用来构造对象的；</br>
+会预先存好对象的原型，原型的原型是根；</br>
+new的时候将对象的__p指向原型；</br>
+
+对象：</br>
+所有对象都直接或间接指向根对象；</br>
+如果对象想要分类，就在原型链上加一环；</br>
+用构造对象可以加这一环；
+
+
+
